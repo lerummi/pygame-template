@@ -16,7 +16,7 @@
   "forwardPorts": [
     8000
     ],
-  "postAttachCommand": "uv run -- pygbag app --bind 0.0.0.0 --port 8000",
+  "postAttachCommand": "uv run -- pygbag --bind 0.0.0.0 --port 8000 app",
   "portsAttributes": {
     "8000": {
       "label": "Application",
