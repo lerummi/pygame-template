@@ -1,0 +1,16 @@
+services:
+  pygbag:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: pygame-template-pygbag:latest
+    ports:
+      - "8061:8061"
+    volumes:
+      - ./app:/app:rw
+    command: ["uv", "run", "pygbag", "--bind", "0.0.0.0", "--port", "8061", "/app"]
+    environment:
+      - PYGBAG_WATCH=1
+      - UV_LINK_MODE=copy
+      - UV_SYSTEM_PYTHON=1
+    restart: unless-stopped
