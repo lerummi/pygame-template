@@ -14,11 +14,11 @@
   },
   "postCreateCommand": "uv sync",
   "forwardPorts": [
-    8061
+    8000
     ],
-  "postAttachCommand": "uv run -- pygbag --bind 0.0.0.0 --port 8061 /workspaces/pygame-template/app",
+  "postAttachCommand": "uv run -- pygbag --bind 0.0.0.0 --port 8000 --cdn https://pygame-web.github.io/archives/0.9/ /workspaces/pygame-template/app",
   "portsAttributes": {
-    "8061": {
+    "8000": {
       "label": "Application",
       "onAutoForward": "openPreview"
     }

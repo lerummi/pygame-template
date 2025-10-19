@@ -9,6 +9,7 @@ rect = pygame.Rect(0, 0, 20, 20)
 rect.center = window.get_rect().center
 vel = 5
 
+
 async def main():
     run = True
     while run:
@@ -35,6 +36,7 @@ async def main():
 
     pygame.quit()
     exit()
+
 
 # This is the program entry point:
 asyncio.run(main())

@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/devcontainers/python:3.13-bookworm
+FROM python:3.13-bookworm
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends git build-essential curl ffmpeg && \
@@ -14,6 +14,8 @@ COPY pyproject.toml uv.lock ./
 # Sync dependencies as defined in pyproject.toml and uv.lock
 RUN uv sync
 
-EXPOSE 8061
+EXPOSE 8000
 
-ENTRYPOINT [  ]
+ENV DISPLAY=host.docker.internal:0.0
+
+ENTRYPOINT []
