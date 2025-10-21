@@ -16,6 +16,4 @@ RUN uv sync
 
 EXPOSE 8000
 
-ENV DISPLAY=host.docker.internal:0.0
-
 ENTRYPOINT []
