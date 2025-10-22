@@ -8,9 +8,15 @@ services:
       - "8000:8000"
     volumes:
       - ./app:/app:rw
-    command: ["uv", "run", "pygbag", "--PYBUILD", "3.13", "--bind", "0.0.0.0", "--port", "8000", "--cdn", "https://pygame-web.github.io/archives/0.9/", "/app"]
+    command: [
+      "uv", "run", "pygbag", 
+      "--PYBUILD", "3.13", 
+      "--bind", "0.0.0.0", 
+      "--port", "8000", 
+      "--cdn", "https://pygame-web.github.io/archives/0.9/", 
+      "/app"]
     environment:
-      - PYGBAG_WATCH=1
-      - RUST_LOG=trace
-      - PYGBAG_BASE_URL=https://pygame-web.github.io/archives/0.9/
+      PYGBAG_WATCH: "1"
+      RUST_LOG: "trace"
+      PYGBAG_BASE_URL: "https://pygame-web.github.io/archives/0.9/"
     restart: unless-stopped
