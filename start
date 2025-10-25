@@ -1,0 +1,5 @@
+#!/bin/bash
+# Convenient wrapper to start the pygbag dev server
+# Usage: ./start
+
+exec .devcontainer/run-pygbag.sh

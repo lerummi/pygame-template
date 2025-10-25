@@ -12,7 +12,6 @@
     "UV_SYSTEM_PYTHON": "1"
   },
   "postCreateCommand": "uv sync && echo 'application/wasm wasm' | sudo tee -a /etc/mime.types",
-  "postStartCommand": ".devcontainer/run-pygbag.sh",
   "forwardPorts": [8000],
   "portsAttributes": {
     "8000": {

@@ -30,8 +30,11 @@ docker compose up
 
 1. Open this project in VS Code
 2. Click "Reopen in Container" when prompted
-3. Press `Cmd+Shift+P` → "Tasks: Run Task" → "Run Pygbag Server"
-4. Open http://localhost:8000 in your browser
+3. Run the start script:
+   ```bash
+   ./start
+   ```
+4. Your browser will automatically open to http://localhost:8000
 
 ### Option 3: Local Development
 
@@ -82,9 +85,9 @@ docker compose restart
 
 ### With Devcontainer
 
-Stop the server (Ctrl+C) and run the task again, or use:
+Stop the server (Ctrl+C) and restart it:
 ```bash
-./.devcontainer/run-pygbag.sh
+./start
 ```
 
 ### Local Development
