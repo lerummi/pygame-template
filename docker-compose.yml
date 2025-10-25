@@ -7,16 +7,12 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./app:/app:rw
+      - ./app:/workspace/app:rw
+    stdin_open: true
+    tty: true
     command: [
-      "uv", "run", "pygbag", 
-      "--PYBUILD", "3.13", 
-      "--bind", "0.0.0.0", 
-      "--port", "8000", 
-      "--cdn", "https://pygame-web.github.io/archives/0.9/", 
-      "/app"]
+      "sh", "-c",
+      "cd /workspace && uv run pygbag --build app && mkdir -p app/build/web/archives/repo/cp312 && curl -L https://pygame-web.github.io/archives/repo/cp312/pygame_static-1.0-cp312-cp312-wasm32_bi_emscripten.whl -o app/build/web/archives/repo/cp312/pygame_static-1.0-cp312-cp312-wasm32_bi_emscripten.whl && cd app/build/web && uv run python3 -m http.server 8000 --bind 0.0.0.0"]
     environment:
       PYGBAG_WATCH: "1"
-      RUST_LOG: "trace"
-      PYGBAG_BASE_URL: "https://pygame-web.github.io/archives/0.9/"
     restart: unless-stopped

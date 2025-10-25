@@ -2,25 +2,21 @@
   "name": "Python 3.13 with uv",
   "image": "mcr.microsoft.com/devcontainers/python:3.13-bookworm",
   "features": {
-    "ghcr.io/va-h/devcontainers-features/uv:1": {}
+    "ghcr.io/va-h/devcontainers-features/uv:1": {},
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": false
+    }
   },
-  "mounts": [
-    "source=${localWorkspaceFolder}/pyproject.toml,target=/workspace/pyproject.toml,type=bind,consistency=cached",
-    "source=${localWorkspaceFolder}/uv.lock,target=/workspace/uv.lock,type=bind,consistency=cached"
-  ],
   "remoteEnv": {
     "UV_LINK_MODE": "copy",
     "UV_SYSTEM_PYTHON": "1"
   },
-  "postCreateCommand": "uv sync",
-  "forwardPorts": [
-    8000
-    ],
-  "postAttachCommand": "uv run -- pygbag --bind 0.0.0.0 --port 8000 --cdn https://pygame-web.github.io/archives/0.9/ /workspaces/pygame-template/app",
+  "postCreateCommand": "uv sync && echo 'application/wasm wasm' | sudo tee -a /etc/mime.types && uv run pygbag --build app && mkdir -p app/build/web/archives/repo/cp312 && curl -L https://pygame-web.github.io/archives/repo/cp312/pygame_static-1.0-cp312-cp312-wasm32_bi_emscripten.whl -o app/build/web/archives/repo/cp312/pygame_static-1.0-cp312-cp312-wasm32_bi_emscripten.whl",
+  "forwardPorts": [8000],
   "portsAttributes": {
     "8000": {
-      "label": "Application",
-      "onAutoForward": "openPreview"
+      "label": "Pygbag Server",
+      "onAutoForward": "notify"
     }
   },
   "customizations": {
@@ -32,7 +28,7 @@
         "ms-toolsai.jupyter"
       ],
       "settings": {
-        "python.defaultInterpreterPath": "/workspace/.venv/bin/python"
+        "python.defaultInterpreterPath": "/workspaces/pygame-template/.venv/bin/python"
       }
     }
   },

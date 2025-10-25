@@ -8,12 +8,16 @@ RUN apt-get update && \
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 ENV PATH="/root/.local/bin:$PATH"
 
+# Set working directory
+WORKDIR /workspace
+
 # Copy project files including pyproject.toml and uv.lock
 COPY pyproject.toml uv.lock ./
 
 # Sync dependencies as defined in pyproject.toml and uv.lock
 RUN uv sync
 
-EXPOSE 8000
+# Copy the rest of the project
+COPY . .
 
-ENTRYPOINT []
+EXPOSE 8000
