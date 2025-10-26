@@ -26,15 +26,13 @@ docker compose up
 # Access your game at http://localhost:8000
 ```
 
-### Option 2: Using VS Code Devcontainer
+### Option 2: Using VS Code Devcontainer / GitHub Codespaces
 
-1. Open this project in VS Code
-2. Click "Reopen in Container" when prompted
-3. Run the start script:
-   ```bash
-   ./start
-   ```
-4. Your browser will automatically open to http://localhost:8000
+1. Open this project in VS Code or GitHub Codespaces
+2. Click "Reopen in Container" when prompted (VS Code) or wait for Codespaces to finish setup
+3. The server starts automatically in the background
+4. A preview window will automatically open showing your game at http://localhost:8000
+5. Server logs are visible in the Terminal output to monitor for errors
 
 ### Option 3: Local Development
 
@@ -83,12 +81,13 @@ After editing code:
 docker compose restart
 ```
 
-### With Devcontainer
+### With Devcontainer / GitHub Codespaces
 
-Stop the server (Ctrl+C) and restart it:
-```bash
-./start
-```
+The server automatically watches for file changes and rebuilds your game. Simply:
+1. Edit your code in `app/main.py`
+2. Save the file
+3. Refresh your browser to see changes
+4. Monitor the Terminal for any errors or build output
 
 ### Local Development
 
