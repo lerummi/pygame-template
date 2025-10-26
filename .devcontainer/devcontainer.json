@@ -1,25 +1,24 @@
 {
-  "name": "Python 3.13 with uv",
-  "image": "mcr.microsoft.com/devcontainers/python:3.13-bookworm",
+  "name": "Pygame Template with Docker Compose",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "pygbag",
+  "workspaceFolder": "/workspace",
   "features": {
-    "ghcr.io/va-h/devcontainers-features/uv:1": {},
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
     "ghcr.io/devcontainers/features/common-utils:2": {
       "installZsh": false
     }
   },
-  "remoteEnv": {
-    "UV_LINK_MODE": "copy",
-    "UV_SYSTEM_PYTHON": "1"
-  },
-  "postCreateCommand": "uv sync && echo 'application/wasm wasm' | sudo tee -a /etc/mime.types",
-  "postStartCommand": "nohup bash -c 'cd /workspaces/pygame-template && ./watch-and-reload.sh' > /tmp/autoreload.log 2>&1 &",
   "forwardPorts": [8000],
   "portsAttributes": {
     "8000": {
       "label": "Pygbag Server",
-      "onAutoForward": "openBrowser"
+      "onAutoForward": "openBrowser",
+      "protocol": "http"
     }
   },
+  "postCreateCommand": "echo 'application/wasm wasm' | sudo tee -a /etc/mime.types || true",
+  "postStartCommand": "sleep 3 && curl -s http://localhost:8000 > /dev/null || true",
   "customizations": {
     "vscode": {
       "extensions": [
@@ -27,11 +26,11 @@
         "ms-python.vscode-pylance",
         "tamasfe.even-better-toml",
         "ms-toolsai.jupyter"
-      ],
-      "settings": {
-        "python.defaultInterpreterPath": "/workspaces/pygame-template/.venv/bin/python"
-      }
+      ]
+    },
+    "codespaces": {
+      "openFiles": []
     }
   },
-  "remoteUser": "vscode"
+  "remoteUser": "root"
 }
