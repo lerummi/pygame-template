@@ -12,6 +12,7 @@
     "UV_SYSTEM_PYTHON": "1"
   },
   "postCreateCommand": "uv sync && echo 'application/wasm wasm' | sudo tee -a /etc/mime.types",
+  "postStartCommand": "nohup bash -c 'cd /workspaces/pygame-template && ./watch-and-reload.sh' > /tmp/autoreload.log 2>&1 &",
   "forwardPorts": [8000],
   "portsAttributes": {
     "8000": {

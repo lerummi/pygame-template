@@ -5,7 +5,7 @@ pygame.init()
 window = pygame.display.set_mode((300, 300))
 clock = pygame.time.Clock()
 
-rect = pygame.Rect(0, 0, 10, 10)
+rect = pygame.Rect(0, 0, 25, 25)
 rect.center = window.get_rect().center
 vel = 5
 
