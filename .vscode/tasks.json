@@ -26,9 +26,9 @@
       }
     },
     {
-      "label": "View Pygbag Server Logs",
+      "label": "Start Pygbag Server with Logs",
       "type": "shell",
-      "command": "tail -f /tmp/pygbag-startup.log",
+      "command": "/workspace/start-pygbag.sh",
       "isBackground": true,
       "problemMatcher": [],
       "presentation": {
