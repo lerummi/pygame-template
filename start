@@ -2,4 +2,4 @@
 # Convenient wrapper to start the pygbag dev server
 # Usage: ./start
 
-exec .devcontainer/run-pygbag.sh
+exec .devcontainer/build-and-run.sh

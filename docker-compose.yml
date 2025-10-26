@@ -10,9 +10,8 @@ services:
       - ./app:/workspace/app:rw
     stdin_open: true
     tty: true
-    command: [
-      "sh", "-c",
-      "cd /workspace && uv run pygbag --build app && mkdir -p app/build/web/archives/repo/cp312 && curl -L https://pygame-web.github.io/archives/repo/cp312/pygame_static-1.0-cp312-cp312-wasm32_bi_emscripten.whl -o app/build/web/archives/repo/cp312/pygame_static-1.0-cp312-cp312-wasm32_bi_emscripten.whl && cd app/build/web && uv run python3 -m http.server 8000 --bind 0.0.0.0"]
+    command: ["/workspace/watch-and-reload.sh"]
     environment:
-      PYGBAG_WATCH: "1"
+      WATCH_DIR: "/workspace/app"
+      BUILD_SCRIPT: "/workspace/build-and-run.sh"
     restart: unless-stopped
