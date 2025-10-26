@@ -19,7 +19,7 @@
     }
   },
   "postCreateCommand": "echo '=== Setting up MIME types ===' && echo 'application/wasm wasm' | tee -a /etc/mime.types && echo '=== Setup complete ==='",
-  "postStartCommand": "bash /workspace/start-pygbag.sh",
+  "postStartCommand": "nohup bash /workspace/start-pygbag.sh > /tmp/pygbag-startup.log 2>&1 & echo 'Pygbag server starting in background...'",
   "customizations": {
     "vscode": {
       "extensions": [
@@ -27,7 +27,10 @@
         "ms-python.vscode-pylance",
         "tamasfe.even-better-toml",
         "ms-toolsai.jupyter"
-      ]
+      ],
+      "settings": {
+        "task.autoDetect": "on"
+      }
     },
     "codespaces": {
       "openFiles": [

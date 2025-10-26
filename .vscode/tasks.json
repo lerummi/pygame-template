@@ -24,6 +24,23 @@
         "reveal": "always",
         "panel": "shared"
       }
+    },
+    {
+      "label": "View Pygbag Server Logs",
+      "type": "shell",
+      "command": "tail -f /tmp/pygbag-startup.log",
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "focus": false,
+        "showReuseMessage": false
+      },
+      "runOptions": {
+        "instanceLimit": 1,
+        "runOn": "folderOpen"
+      }
     }
   ]
 }
