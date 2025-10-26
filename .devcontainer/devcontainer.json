@@ -1,24 +1,25 @@
 {
-  "name": "Python 3.13 with uv",
-  "image": "mcr.microsoft.com/devcontainers/python:3.13-bookworm",
+  "name": "Pygame Template",
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "context": ".."
+  },
+  "workspaceFolder": "/workspace",
   "features": {
-    "ghcr.io/va-h/devcontainers-features/uv:1": {},
     "ghcr.io/devcontainers/features/common-utils:2": {
       "installZsh": false
     }
   },
-  "remoteEnv": {
-    "UV_LINK_MODE": "copy",
-    "UV_SYSTEM_PYTHON": "1"
-  },
-  "postCreateCommand": "uv sync && echo 'application/wasm wasm' | sudo tee -a /etc/mime.types",
   "forwardPorts": [8000],
   "portsAttributes": {
     "8000": {
       "label": "Pygbag Server",
-      "onAutoForward": "openBrowser"
+      "onAutoForward": "openPreview",
+      "protocol": "http"
     }
   },
+  "postCreateCommand": "echo '=== Setting up MIME types ===' && echo 'application/wasm wasm' | tee -a /etc/mime.types && echo '=== Setup complete ==='",
+  "postStartCommand": "/workspace/start-pygbag.sh",
   "customizations": {
     "vscode": {
       "extensions": [
@@ -28,9 +29,14 @@
         "ms-toolsai.jupyter"
       ],
       "settings": {
-        "python.defaultInterpreterPath": "/workspaces/pygame-template/.venv/bin/python"
+        "task.autoDetect": "on"
       }
+    },
+    "codespaces": {
+      "openFiles": [
+        "app/main.py"
+      ]
     }
   },
-  "remoteUser": "vscode"
+  "remoteUser": "root"
 }
