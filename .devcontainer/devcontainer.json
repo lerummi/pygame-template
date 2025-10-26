@@ -1,10 +1,11 @@
 {
-  "name": "Pygame Template with Docker Compose",
-  "dockerComposeFile": "../docker-compose.yml",
-  "service": "pygbag",
+  "name": "Pygame Template",
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "context": ".."
+  },
   "workspaceFolder": "/workspace",
   "features": {
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
     "ghcr.io/devcontainers/features/common-utils:2": {
       "installZsh": false
     }
@@ -15,10 +16,14 @@
       "label": "Pygbag Server",
       "onAutoForward": "openBrowserOnce",
       "protocol": "http"
+    },
+    "4390": {
+      "label": "VS Code Server",
+      "onAutoForward": "ignore"
     }
   },
-  "postCreateCommand": "echo 'application/wasm wasm' | sudo tee -a /etc/mime.types || true",
-  "postStartCommand": "sleep 3 && curl -s http://localhost:8000 > /dev/null || true",
+  "postCreateCommand": "echo 'application/wasm wasm' | tee -a /etc/mime.types",
+  "postStartCommand": "nohup bash -c '/workspace/watch-and-reload.sh' > /tmp/pygbag.log 2>&1 & sleep 2",
   "customizations": {
     "vscode": {
       "extensions": [
