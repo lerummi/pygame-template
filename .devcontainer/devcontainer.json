@@ -14,7 +14,7 @@
   "portsAttributes": {
     "8000": {
       "label": "Pygbag Server",
-      "onAutoForward": "openBrowserOnce",
+      "onAutoForward": "openPreview",
       "protocol": "http"
     }
   },
@@ -30,7 +30,9 @@
       ]
     },
     "codespaces": {
-      "openFiles": []
+      "openFiles": [
+        "app/main.py"
+      ]
     }
   },
   "remoteUser": "root"
