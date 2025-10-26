@@ -16,14 +16,10 @@
       "label": "Pygbag Server",
       "onAutoForward": "openBrowserOnce",
       "protocol": "http"
-    },
-    "4390": {
-      "label": "VS Code Server",
-      "onAutoForward": "ignore"
     }
   },
-  "postCreateCommand": "echo 'application/wasm wasm' | tee -a /etc/mime.types",
-  "postStartCommand": "nohup bash -c '/workspace/watch-and-reload.sh' > /tmp/pygbag.log 2>&1 & sleep 2",
+  "postCreateCommand": "echo '=== Setting up MIME types ===' && echo 'application/wasm wasm' | tee -a /etc/mime.types && echo '=== Setup complete ==='",
+  "postStartCommand": "bash /workspace/start-pygbag.sh",
   "customizations": {
     "vscode": {
       "extensions": [

@@ -30,7 +30,7 @@ async def main():
         rect.centery = rect.centery % window.get_height()
 
         window.fill(0)
-        pygame.draw.rect(window, "red", rect)
+        pygame.draw.rect(window, "white", rect)
         pygame.display.flip()
         await asyncio.sleep(0)  # required for pygbag
 
