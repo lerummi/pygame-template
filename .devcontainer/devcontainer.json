@@ -19,6 +19,7 @@
     }
   },
   "postCreateCommand": "echo '=== Setting up MIME types ===' && echo 'application/wasm wasm' | tee -a /etc/mime.types && echo '=== Setup complete ==='",
+  "postStartCommand": "/workspace/start-pygbag.sh",
   "customizations": {
     "vscode": {
       "extensions": [

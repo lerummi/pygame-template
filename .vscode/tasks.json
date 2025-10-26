@@ -24,23 +24,6 @@
         "reveal": "always",
         "panel": "shared"
       }
-    },
-    {
-      "label": "Start Pygbag Server with Logs",
-      "type": "shell",
-      "command": "/workspace/start-pygbag.sh",
-      "isBackground": true,
-      "problemMatcher": [],
-      "presentation": {
-        "reveal": "always",
-        "panel": "dedicated",
-        "focus": false,
-        "showReuseMessage": false
-      },
-      "runOptions": {
-        "instanceLimit": 1,
-        "runOn": "folderOpen"
-      }
     }
   ]
 }
