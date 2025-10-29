@@ -2,6 +2,22 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "Start Pygbag Auto-Reload Server",
+      "type": "shell",
+      "command": "/workspace/start-pygbag.sh",
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "focus": false,
+        "showReuseMessage": false
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    },
+    {
       "label": "Run Pygbag Server",
       "type": "shell",
       "command": "${workspaceFolder}/.devcontainer/run-pygbag.sh",
