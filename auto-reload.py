@@ -62,6 +62,8 @@ class BuildHandler(FileSystemEventHandler):
             self.build_process = subprocess.Popen(
                 [self.build_script],
                 cwd="/workspace",
+                stdout=None,  # Inherit parent's stdout (VS Code terminal)
+                stderr=None,  # Inherit parent's stderr (VS Code terminal)
                 preexec_fn=os.setsid  # Create new process group
             )
             if initial:
