@@ -78,15 +78,21 @@ class BuildHandler(FileSystemEventHandler):
 
         path = Path(event.src_path)
 
+        # Debug: Print all events
+        print(f"[DEBUG] Event: {event.event_type} on {path}")
+
         # Ignore build output, hidden files, and cache
         ignore_patterns = ['build/', '.git/', '__pycache__', '.pyc']
         if any(pattern in str(path) for pattern in ignore_patterns):
+            print(f"[DEBUG] Ignored (build/cache): {path}")
             return
 
         # Only watch Python files and relevant assets
         if path.suffix in ['.py', '.png', '.jpg', '.wav', '.mp3', '.ogg']:
             print(f">>> File changed: {path.relative_to(self.watch_dir)}")
             self.trigger_build()
+        else:
+            print(f"[DEBUG] Ignored (wrong extension): {path} (suffix: {path.suffix})")
 
 def main():
     watch_dir = os.getenv("WATCH_DIR", "/workspace/app")
