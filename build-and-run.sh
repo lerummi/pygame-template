@@ -23,9 +23,6 @@ mkdir -p app/build/web/archives/repo/cp312
 curl -L https://pygame-web.github.io/archives/repo/cp312/pygame_static-1.0-cp312-cp312-wasm32_bi_emscripten.whl \
   -o app/build/web/archives/repo/cp312/pygame_static-1.0-cp312-cp312-wasm32_bi_emscripten.whl
 
-echo "Injecting auto-reload script..."
-uv run python3 "${WORKSPACE_DIR}/inject-autoreload.py" app/build/web/index.html 5
-
 echo "Starting HTTP server on port 8000..."
 echo "Access your app at http://localhost:8000"
 cd app/build/web

@@ -12,9 +12,6 @@
         "panel": "dedicated",
         "focus": false,
         "showReuseMessage": false
-      },
-      "runOptions": {
-        "runOn": "folderOpen"
       }
     },
     {

@@ -30,8 +30,10 @@ docker compose up
 
 1. Open this project in VS Code or GitHub Codespaces
 2. Click "Reopen in Container" when prompted (VS Code) or wait for Codespaces to finish setup
-3. The server starts automatically in the background
-4. A preview window will automatically open showing your game at http://localhost:8000
+3. **Manually start the server** using one of these methods:
+   - Run the command: `./start-server.sh`
+   - Or use VS Code Command Palette (Cmd/Ctrl+Shift+P): `Tasks: Run Task` → `Start Pygbag Auto-Reload Server`
+4. Access your game at http://localhost:8000
 5. Server logs are visible in the Terminal output to monitor for errors
 
 ### Option 3: Local Development
@@ -70,6 +72,17 @@ The Docker/devcontainer setup uses a workaround for pygbag in containerized envi
 
 This avoids browser security issues where pygbag's proxy would rewrite CDN URLs to use `0.0.0.0`, which browsers block.
 
+### Auto-Rebuild on File Changes
+
+When using the devcontainer or Docker Compose setup, a file watcher automatically monitors the `app/` directory for changes. When you save a file:
+
+1. The watcher detects the change
+2. Automatically triggers a rebuild of your game
+3. Restarts the HTTP server with the updated build
+4. **You manually refresh your browser** to see the changes
+
+This provides a streamlined development workflow where you only need to save your code and refresh the browser.
+
 ## Development
 
 Edit `app/main.py` to modify your game. The template includes a simple red square that you can move with arrow keys.
@@ -83,11 +96,13 @@ docker compose restart
 
 ### With Devcontainer / GitHub Codespaces
 
-The server automatically watches for file changes and rebuilds your game. Simply:
+The file watcher automatically rebuilds your game when you save changes. Simply:
 1. Edit your code in `app/main.py`
-2. Save the file
-3. Refresh your browser to see changes
+2. Save the file (the watcher will automatically rebuild)
+3. **Manually refresh your browser** to see changes
 4. Monitor the Terminal for any errors or build output
+
+The file watcher runs in the background and monitors `.py`, `.png`, `.jpg`, `.wav`, `.mp3`, and `.ogg` files in the `app/` directory.
 
 ### Local Development
 

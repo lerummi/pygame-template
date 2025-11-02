@@ -11,13 +11,6 @@
     }
   },
   "forwardPorts": [8000],
-  "portsAttributes": {
-    "8000": {
-      "label": "Pygbag Server",
-      "onAutoForward": "notify",
-      "protocol": "http"
-    }
-  },
   "postCreateCommand": "echo '=== Setting up MIME types ===' && echo 'application/wasm wasm' | tee -a /etc/mime.types && echo '=== Setup complete ==='",
   "customizations": {
     "vscode": {
@@ -30,11 +23,6 @@
       "settings": {
         "task.autoDetect": "on"
       }
-    },
-    "codespaces": {
-      "openFiles": [
-        "app/main.py"
-      ]
     }
   },
   "remoteUser": "root"
