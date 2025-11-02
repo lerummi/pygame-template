@@ -9,5 +9,6 @@ dependencies = [
     "ffmpeg-python>=0.2.0",
     "pygame>=2.6.1",
     "pygbag>=0.9.2",
+    "ruff>=0.8.0",
     "watchdog>=6.0.0",
 ]
