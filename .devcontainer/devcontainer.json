@@ -12,6 +12,7 @@
   },
   "forwardPorts": [8000],
   "postCreateCommand": "echo '=== Setting up MIME types ===' && echo 'application/wasm wasm' | tee -a /etc/mime.types && echo '=== Setup complete ==='",
+  "postStartCommand": "./start",
   "customizations": {
     "vscode": {
       "extensions": [
