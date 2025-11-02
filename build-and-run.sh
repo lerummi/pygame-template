@@ -15,6 +15,27 @@ fi
 
 cd "$WORKSPACE_DIR"
 
+echo "Validating Python syntax..."
+syntax_error=0
+for pyfile in app/*.py; do
+    if [ -f "$pyfile" ]; then
+        if ! uv run python3 -m py_compile "$pyfile" 2>&1; then
+            syntax_error=1
+        fi
+    fi
+done
+
+if [ $syntax_error -eq 1 ]; then
+    echo ""
+    echo "================================================================"
+    echo "❌ SYNTAX ERROR DETECTED"
+    echo "================================================================"
+    echo "Please fix the syntax errors above before the build can continue."
+    echo "================================================================"
+    exit 1
+fi
+echo "✓ Python syntax validation passed"
+
 echo "Building pygbag app..."
 uv run pygbag --build app
 

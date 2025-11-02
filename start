@@ -1,5 +1,5 @@
 #!/bin/bash
-# Convenient wrapper to start the pygbag dev server
+# Convenient wrapper to start the pygbag dev server with auto-reload
 # Usage: ./start
 
-exec .devcontainer/build-and-run.sh
+exec ./watch-and-reload.sh

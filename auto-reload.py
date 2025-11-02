@@ -59,17 +59,35 @@ class BuildHandler(FileSystemEventHandler):
 
         # Start new build process
         try:
+            if initial:
+                print(f"\n>>> Initial build started")
+
+            # Important: Don't redirect stdout/stderr so build errors are visible
             self.build_process = subprocess.Popen(
                 [self.build_script],
                 cwd="/workspace",
-                preexec_fn=os.setsid  # Create new process group
+                preexec_fn=os.setsid,  # Create new process group
+                stdout=None,  # Inherit stdout - shows build output
+                stderr=None   # Inherit stderr - shows build errors
             )
-            if initial:
-                print(f"\n>>> Initial build started")
+
             print(f">>> Build process PID: {self.build_process.pid}")
-            print(f">>> Watching for changes in: {self.watch_dir}\n")
+            print(f">>> Watching for changes in: {self.watch_dir}")
+
+            # Wait a moment to check if build immediately fails
+            time.sleep(0.5)
+            returncode = self.build_process.poll()
+            if returncode is not None:
+                if returncode != 0:
+                    print(f"\n{'='*50}")
+                    print(f"⚠️  BUILD FAILED with exit code {returncode}")
+                    print(f"{'='*50}\n")
+                else:
+                    print(">>> Build completed successfully\n")
         except Exception as e:
-            print(f"Error starting build: {e}", file=sys.stderr)
+            print(f"\n{'='*50}")
+            print(f"❌ ERROR starting build: {e}")
+            print(f"{'='*50}\n", file=sys.stderr)
 
     def on_any_event(self, event):
         # Ignore directory events
@@ -120,7 +138,7 @@ def main():
     observer.start()
 
     # Handle shutdown gracefully
-    def signal_handler(sig, frame):
+    def signal_handler(_sig, _frame):
         print("\n\n>>> Shutting down watcher...")
         observer.stop()
         if event_handler.build_process and event_handler.build_process.poll() is None:
