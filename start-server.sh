@@ -1,6 +1,6 @@
 #!/bin/bash
-# Manual server startup script
-# Runs an initial build and starts the HTTP server
+# Server startup script with auto-reload
+# Watches for file changes and rebuilds automatically
 
 set -e
 
@@ -15,5 +15,5 @@ fi
 
 cd "$WORKSPACE_DIR"
 
-echo "Starting manual server..."
-exec "${WORKSPACE_DIR}/build-and-run.sh"
+echo "Starting server with auto-reload..."
+exec "${WORKSPACE_DIR}/watch-and-reload.sh"
