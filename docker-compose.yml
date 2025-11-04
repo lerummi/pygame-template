@@ -7,11 +7,15 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./app:/workspace/app:rw
+      - .:/workspace:rw
     stdin_open: true
     tty: true
     command: ["/workspace/watch-and-reload.sh"]
     environment:
-      WATCH_DIR: "/workspace/app"
+      # APP_DIR specifies which directory to build
+      # Can be set via: APP_DIR=learn/1_tasten docker compose up
+      # Or in a .env file
+      # Defaults to "app" if not set
+      APP_DIR: "${APP_DIR:-app}"
       BUILD_SCRIPT: "/workspace/build-and-run.sh"
     restart: unless-stopped

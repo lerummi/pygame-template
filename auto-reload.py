@@ -115,10 +115,12 @@ class BuildHandler(FileSystemEventHandler):
 def main():
     watch_dir = os.getenv("WATCH_DIR", "/workspace/app")
     build_script = os.getenv("BUILD_SCRIPT", "/workspace/build-and-run.sh")
+    app_dir = os.getenv("APP_DIR", "app")
 
     print("="*60)
     print("  Pygame Template Auto-Reload Watcher")
     print("="*60)
+    print(f"App directory:   {app_dir}")
     print(f"Watch directory: {watch_dir}")
     print(f"Build script:    {build_script}")
     print("="*60)

@@ -8,6 +8,12 @@ echo "  Starting Pygame Template Server"
 echo "=========================================="
 echo ""
 
+# APP_DIR can be passed as environment variable
+if [ -n "$APP_DIR" ]; then
+    echo "App directory: $APP_DIR"
+    export APP_DIR
+fi
+
 # Check if PID file exists and process is running
 if [ -f "$PIDFILE" ]; then
     PID=$(cat "$PIDFILE")

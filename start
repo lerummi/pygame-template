@@ -1,5 +1,47 @@
 #!/bin/bash
 # Convenient wrapper to start the pygbag dev server with auto-reload
-# Usage: ./start
+# Usage:
+#   ./start                    # Uses default 'app' directory
+#   ./start learn/1_tasten     # Uses specified directory
+
+PIDFILE="/tmp/pygbag-server.pid"
+
+# Stop any existing server
+if [ -f "$PIDFILE" ]; then
+    PID=$(cat "$PIDFILE")
+    if ps -p "$PID" > /dev/null 2>&1; then
+        echo "Stopping existing server (PID: $PID)..."
+        kill "$PID" 2>/dev/null || true
+        sleep 1
+        # Force kill if still running
+        if ps -p "$PID" > /dev/null 2>&1; then
+            kill -9 "$PID" 2>/dev/null || true
+        fi
+        rm -f "$PIDFILE"
+    else
+        # Stale PID file
+        rm -f "$PIDFILE"
+    fi
+fi
+
+if [ -n "$1" ]; then
+    # Directory specified as argument
+    APP_DIR="$1"
+
+    # Validate directory exists
+    if [ ! -d "$APP_DIR" ]; then
+        echo "Error: Directory '$APP_DIR' does not exist"
+        exit 1
+    fi
+
+    # Validate main.py exists
+    if [ ! -f "$APP_DIR/main.py" ]; then
+        echo "Error: main.py not found in '$APP_DIR'"
+        exit 1
+    fi
+
+    export APP_DIR
+    echo "Starting with directory: $APP_DIR"
+fi
 
 exec ./watch-and-reload.sh
