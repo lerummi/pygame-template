@@ -1,5 +1,6 @@
 import pygame
 import asyncio
+from functions import zeige_text
 
 pygame.init()
 window = pygame.display.set_mode((400, 300))
@@ -11,7 +12,6 @@ async def main():
     Pygame Tutorial 1: Keyboard Input
     Displays which key is being pressed in the center of the screen.
     """
-    font = pygame.font.Font(None, 48)
     current_key = "Press any key..."
 
     run = True
@@ -30,9 +30,7 @@ async def main():
         window.fill((20, 20, 60))
 
         # Render and display the current key text
-        text_surface = font.render(current_key, True, (255, 255, 255))
-        text_rect = text_surface.get_rect(center=window.get_rect().center)
-        window.blit(text_surface, text_rect)
+        zeige_text(window, current_key)
 
         pygame.display.flip()
         await asyncio.sleep(0)  # required for pygbag

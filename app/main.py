@@ -22,8 +22,17 @@ async def main():
 
         keys = pygame.key.get_pressed()
 
-        rect.x += (keys[pygame.K_RIGHT] - keys[pygame.K_LEFT]) * vel
-        rect.y += (keys[pygame.K_DOWN] - keys[pygame.K_UP]) * vel
+        # Move horizontally
+        if keys[pygame.K_RIGHT]:
+            rect.x += vel
+        elif keys[pygame.K_LEFT]:
+            rect.x -= vel
+
+        # Move vertically
+        if keys[pygame.K_DOWN]:
+            rect.y += vel
+        elif keys[pygame.K_UP]:
+            rect.y -= vel
 
         # Keep the square inside the window by wrapping around
         rect.centerx = rect.centerx % window.get_width()
