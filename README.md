@@ -47,11 +47,13 @@ APP_DIR=learn/1_tasten docker compose up
 
 1. Open this project in VS Code or GitHub Codespaces
 2. Click "Reopen in Container" when prompted (VS Code) or wait for Codespaces to finish setup
-3. **Manually start the server** using one of these methods:
-   - Run the command: `./start-server.sh`
-   - Or use VS Code Command Palette (Cmd/Ctrl+Shift+P): `Tasks: Run Task` → `Start Pygbag Auto-Reload Server`
+3. Start the server with your desired directory:
+   ```bash
+   ./start                  # Default 'app' directory
+   ./start learn/1_tasten   # Specific directory
+   ```
 4. Access your game at http://localhost:8000
-5. Server logs are visible in the Terminal output to monitor for errors
+5. Switch directories anytime by running `./start <directory>` again
 
 ### Option 4: Manual Local Development
 
@@ -136,12 +138,14 @@ docker compose restart
 ### With Devcontainer / GitHub Codespaces
 
 The file watcher automatically rebuilds your game when you save changes. Simply:
-1. Edit your code in `app/main.py`
-2. Save the file (the watcher will automatically rebuild)
-3. **Manually refresh your browser** to see changes
-4. Monitor the Terminal for any errors or build output
+1. Start the server with `./start` or `./start learn/1_tasten`
+2. Edit your code in the active directory
+3. Save the file (the watcher will automatically rebuild)
+4. **Manually refresh your browser** to see changes
+5. Monitor the Terminal for any errors or build output
+6. Switch directories anytime with `./start <directory>`
 
-The file watcher runs in the background and monitors `.py`, `.png`, `.jpg`, `.wav`, `.mp3`, and `.ogg` files in the `app/` directory.
+The file watcher monitors `.py`, `.png`, `.jpg`, `.wav`, `.mp3`, and `.ogg` files in the active directory.
 
 ### Local Development
 

@@ -12,10 +12,6 @@
   },
   "forwardPorts": [8000],
   "postCreateCommand": "echo '=== Setting up MIME types ===' && echo 'application/wasm wasm' | tee -a /etc/mime.types && echo '=== Setup complete ==='",
-  "postStartCommand": "/workspace/start-pygbag.sh",
-  "containerEnv": {
-    "APP_DIR": "${localEnv:APP_DIR:app}"
-  },
   "customizations": {
     "vscode": {
       "extensions": [

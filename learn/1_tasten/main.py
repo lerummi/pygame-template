@@ -23,8 +23,8 @@ async def main():
                 run = False
             if event.type == pygame.KEYDOWN:
                 # Get the name of the pressed key
-                current_key = f"Key: {pygame.key.name(event.key)}"
-                print(f"Key pressed: {pygame.key.name(event.key)}")
+                current_key = f"Taste: {pygame.key.name(event.key)}"
+                print(f"Taste: {pygame.key.name(event.key)}")
 
         # Clear screen with dark blue background
         window.fill((20, 20, 60))
