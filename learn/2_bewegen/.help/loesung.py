@@ -52,8 +52,16 @@ async def main():
 
         # Aufgabe 1:
         # Abfragen, ob Tasten gedrückt sind
-        # "left", "right", "up", "down"
+        # left, right, up, down
         # Logik wenn Taste "right" ist, erhöhe position.x um 1
+        if taste == "right":
+            position.x += 1
+        elif taste == "left":
+            position.x -= 1
+        elif taste == "down":
+            position.y += 1
+        elif taste == "up":
+            position.y -= 1
 
         # Aufgabe 2:
         # Zeichne die Wand als rotes Rechteck
@@ -62,14 +70,33 @@ async def main():
         # Nutze dafür die Funktion kollisition(object1, object2)
         # Wenn eine Kollision erkannt wird, bewege das obj zurück und stoppe die
         # Bewegung
-
+        if kollision(position, wand):
+            logger.info("Kollision mit der Wand!")
+            # Wenn ja, bewege das Objekt zurück
+            if taste == "right":
+                position.x -= 1
+            elif taste == "left":
+                position.x += 1
+            elif taste == "down":
+                position.y -= 1
+            elif taste == "up":
+                position.y += 1
 
         # Aufgabe 2:
         # Je nach Richtung soll das Objekt gedreht werden
         # wenn ein Tastenwechsel erfolgt ist
+        if tastenwechsel:
+            if taste == "right":
+                obj_rotiert = pygame.transform.rotate(obj, 0)
+            elif taste == "left":
+                obj_rotiert = pygame.transform.rotate(obj, 180)
+            elif taste == "down":
+                obj_rotiert = pygame.transform.rotate(obj, 270)
+            elif taste == "up":
+                obj_rotiert = pygame.transform.rotate(obj, 90)
 
         # Zeige obj an der aktuellen Position
-        window.blit(obj, position)
+        window.blit(obj_rotiert, position)
 
         tastenwechsel = False
 

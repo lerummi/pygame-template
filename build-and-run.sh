@@ -63,7 +63,8 @@ fi
 echo "✓ Code validation passed"
 
 echo "Building pygbag app..."
-uv run pygbag --build "${APP_DIR}"
+# Enable verbose output from pygbag
+PYTHONASYNCIODEBUG=1 uv run pygbag --build "${APP_DIR}" 2>&1 | tee /tmp/pygbag-build.log
 
 echo "Downloading pygame wheel..."
 mkdir -p "${APP_DIR}/build/web/archives/repo/cp312"
@@ -72,5 +73,7 @@ curl -L https://pygame-web.github.io/archives/repo/cp312/pygame_static-1.0-cp312
 
 echo "Starting HTTP server on port 8000..."
 echo "Access your app at http://localhost:8000"
+echo "Check browser console (F12) for JavaScript/Python errors"
 cd "${APP_DIR}/build/web"
-uv run python3 -m http.server 8000 --bind 0.0.0.0
+# Run HTTP server with unbuffered output for better logging
+PYTHONUNBUFFERED=1 uv run python3 -m http.server 8000 --bind 0.0.0.0 2>&1 | tee /tmp/http-server.log

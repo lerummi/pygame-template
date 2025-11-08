@@ -18,4 +18,8 @@ services:
       # Defaults to "app" if not set
       APP_DIR: "${APP_DIR:-app}"
       BUILD_SCRIPT: "/workspace/build-and-run.sh"
+      # Enable detailed Python error logging
+      PYTHONUNBUFFERED: "1"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONASYNCIODEBUG: "1"
     restart: unless-stopped

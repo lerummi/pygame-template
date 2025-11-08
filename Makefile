@@ -22,15 +22,15 @@ help: ## Zeige diese Hilfe an
 	@printf "\n"
 
 ##@ Codespace
-start/%:
-start/%: ## Starte eine Codespace-Umgebung für eine App. Gib den Namen des App-Verzeichnissesn mit 'start/<app-name>' an.
-	@./start $(notdir $@)
+start: DIR?=app
+start: ## Starte eine Codespace-Umgebung für eine App. Gib den Namen des App-Verzeichnissesn mit 'start/<app-name>' an.
+	@./start $(DIR)
 
 ##@ Docker
 build: DARGS?=
 build: ## Docker Image bauen
 	docker compose build $(DARGS)
 
-run/%:
-run/%: ## Starte einen Docker Container für eine App. Gib den Namen des App-Verzeichnissesn mit 'run/<app-name>' an.
-	APP_DIR=$(notdir $@) docker compose up
+run: DIR?=app
+run: ## Starte einen Docker Container für eine App. Gib den Namen des App-Verzeichnissesn mit 'make run DIR=<verzeichnis>' an.
+	APP_DIR=$(DIR) docker compose up
