@@ -5,13 +5,16 @@
     "context": ".."
   },
   "workspaceFolder": "/workspace",
+  "containerEnv": {
+    "PYTHONPATH": "/workspace/src"
+  },
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {
       "installZsh": false
     }
   },
   "forwardPorts": [8000],
-  "postCreateCommand": "echo '=== Setting up MIME types ===' && echo 'application/wasm wasm' | tee -a /etc/mime.types && echo '=== Setup complete ==='",
+  "postCreateCommand": "echo '=== Setting up MIME types ===' && echo 'application/wasm wasm' | tee -a /etc/mime.types && echo '=== Installing dependencies ===' && pip install --no-cache-dir pygame pygbag black ruff watchdog ffmpeg-python && echo '=== Setup complete ==='",
   "customizations": {
     "vscode": {
       "extensions": [
@@ -21,7 +24,8 @@
         "ms-toolsai.jupyter"
       ],
       "settings": {
-        "task.autoDetect": "on"
+        "task.autoDetect": "on",
+        "python.defaultInterpreterPath": "/usr/local/bin/python"
       }
     }
   },

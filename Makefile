@@ -22,9 +22,9 @@ help: ## Zeige diese Hilfe an
 	@printf "\n"
 
 ##@ Codespace
-start: DIR?=app
-start: ## Starte eine Codespace-Umgebung für eine App. Gib den Namen des App-Verzeichnissesn mit 'make start DIR=<app-name>' an.
-	@./start $(DIR)
+code: DIR?=app
+code: ## Starte eine Codespace-Umgebung für eine App. Gib den Namen des App-Verzeichnissesn mit 'make start DIR=<app-name>' an.
+	./start $(DIR)
 
 ##@ Docker
 build: DARGS?=

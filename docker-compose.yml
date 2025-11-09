@@ -18,6 +18,8 @@ services:
       # Defaults to "app" if not set
       APP_DIR: "${APP_DIR:-app}"
       BUILD_SCRIPT: "/workspace/build-and-run.sh"
+      # Python path to include src directory
+      PYTHONPATH: "/workspace/src"
       # Enable detailed Python error logging
       PYTHONUNBUFFERED: "1"
       PYTHONDONTWRITEBYTECODE: "1"
