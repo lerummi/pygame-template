@@ -1,7 +1,7 @@
 import pygame
 import asyncio
 import logging
-from functions import kollision
+#from functions import kollision
 
 logger = logging.getLogger("pygame")
 
@@ -24,7 +24,7 @@ async def main():
     # Position des Objekts
     position = obj.get_rect(center=window.get_rect().center)
     # Rotierte Version des Objekts (anfangs unverändert)
-    obj_rotiert = obj
+    #obj_rotiert = obj
 
     # Wand
     wand = pygame.Rect(150, 100, 100, 20)
@@ -33,7 +33,7 @@ async def main():
     taste = ""
 
     # Ist ein Tasten-Event erfolgt
-    tastenwechsel = False
+    #tastenwechsel = False
 
     while run:
         clock.tick(60)
@@ -44,7 +44,7 @@ async def main():
             if event.type == pygame.KEYDOWN:
                 # Get the name of the pressed key
                 taste = pygame.key.name(event.key)
-                tastenwechsel = True
+                #tastenwechsel = True
                 logger.info(f"Taste: {taste}")
 
         # Blauer Hintergrund
@@ -59,7 +59,7 @@ async def main():
         # Zeichne die Wand als rotes Rechteck
         pygame.draw.rect(window, (200, 0, 0), wand)
         # Prüfe mit der Funktion kollision, ob obj die Wand berührt
-        # Nutze dafür die Funktion kollisition(object1, object2)
+        # Nutze dafür die Funktion kollisition(object1, object2) <- oben auskommentiert
         # Wenn eine Kollision erkannt wird, bewege das obj zurück und stoppe die
         # Bewegung
 
@@ -67,11 +67,12 @@ async def main():
         # Aufgabe 2:
         # Je nach Richtung soll das Objekt gedreht werden
         # wenn ein Tastenwechsel erfolgt ist
+        # Nutze dazu obj_rotiert und tastenwechsel (auskommentierte Befehle)
 
         # Zeige obj an der aktuellen Position
         window.blit(obj, position)
 
-        tastenwechsel = False
+        #tastenwechsel = False
 
         pygame.display.flip()
         await asyncio.sleep(0)  # required for pygbag
