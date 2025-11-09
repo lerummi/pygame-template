@@ -23,7 +23,7 @@ help: ## Zeige diese Hilfe an
 
 ##@ Codespace
 start: DIR?=app
-start: ## Starte eine Codespace-Umgebung für eine App. Gib den Namen des App-Verzeichnissesn mit 'start/<app-name>' an.
+start: ## Starte eine Codespace-Umgebung für eine App. Gib den Namen des App-Verzeichnissesn mit 'make start DIR=<app-name>' an.
 	@./start $(DIR)
 
 ##@ Docker
